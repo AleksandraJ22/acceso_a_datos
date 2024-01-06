@@ -4,23 +4,21 @@ from typing import Dict, List
 
 class Categoria:
     
-    def __init__(self, nombre: str, diccionario_productos: Dict[str, List[Producte]]):
+    def __init__(self, nombre: str, productos: Dict[str, List[Producte]]):
         self.nombre = nombre
-        self.diccionario_productos = diccionario_productos
+        self.productos = productos
         
+    
+    def getNom(self):
+        return self.nombre
         
-        
-#le paso categoria por parametro y que me devuelva los productos que tiene y su cantidad 
-        
-    def mirarLosProductos(self, nom_categoria)->List[Producte]:
-        
-        if nom_categoria in self.diccionario_productos:
-            return self.diccionario_productos[nom_categoria]
+    def mirarLosProductos(self, nom_categoria: str) ->  List[Producte]:
+        if nom_categoria in self.productos:
+            return self.productos[nom_categoria]
         else:
             return []
-            
-            
-            
+      
+       
             
         
         

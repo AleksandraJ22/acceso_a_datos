@@ -1,7 +1,7 @@
 
 class Producte:
     
-    def __init__(self, quantitat, nom):
+    def __init__(self, nom, quantitat):
         self.quantitat=quantitat
         self.nom=nom
         

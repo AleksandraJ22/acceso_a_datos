@@ -43,13 +43,15 @@ class ListaItem:
             return False
             
     
-    
-    def imprimirCategorias(self)->None:
-        
-        print(f'----------------------Estas son las categorias existentes: ------------------')
-        for categora in self.categorias:
-            print(categora)
-       
+    def imprimirCategorias(self) -> None:
+        print("---------------------- Estas son las categorias existentes: ------------------")
+        for categoria, productos in self.categorias.items():
+            print(f'{categoria}:')
+            for producto in productos.mirarLosProductos(productos.getNom()):
+                print(f'  Producto: {producto.getNom()}, Cantidad: {producto.getQuantitat()}')
+        print()
+            
+     
        
   
 
@@ -58,9 +60,12 @@ miApp=ListaItem()
 
 
 miApp.imprimirCategorias()
-         
-categoria_animal = Categoria('Animal', {})
 
+categoria_frescos=Categoria('Frescos', {'Frescos':[Producte('Carne', 2), Producte('Pescado', 3)]})
+         
+categoria_animal = Categoria('Animal', {'Animal': [Producte('Pienso', 3), Producte('Snacks', 5)]})
+
+miApp.afegir_categoria(categoria_frescos)    
 miApp.afegir_categoria(categoria_animal)    
 
 print(f'Ahora se ha añadido la categoria comida para animales (Animal)')
@@ -79,7 +84,7 @@ else:
     print('Esa categoria no existe')
     
     
-    
+#El usuario 
 
 
          

@@ -18,6 +18,23 @@ class Categoria:
         else:
             return []
       
+    def setProducte(self, nom_categoria: str, p:Producte)->bool:
+        if nom_categoria in self.productos:
+            self.productos[nom_categoria].append(p)
+            return True
+        else:
+            return False
+        
+            
+       
+       
+        
+    #def updateProducte(self, novaQuantitat: int)->bool:
+        
+     #   for k,v in self.productos.items():
+      #      for i in v
+        
+     
        
             
         

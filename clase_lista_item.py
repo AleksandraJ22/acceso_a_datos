@@ -30,12 +30,14 @@ class ListaItem:
 
 #si usuario quiere filtrar por categoria
     def filtrar_por_categoria(self, nom_categoria: str) -> None:
-         print("---------------------- Estas son los productos de la categoria nom_categoria: ------------------")
-         for categoria, productos in self.categorias.items():
-             if categoria.nombre == nom_categoria:
-                for producto in productos.mirarLosProductos(productos.getNom()):
-                    print(f'  Producto: {producto.getNom()}, Cantidad: {producto.getQuantitat()}')
-         print()
+        if nom_categoria in self.categorias:
+            print(f'---------------------- Estas son los productos de la categoria {nom_categoria}: ------------------')
+            for categoria, productos in self.categorias.items():
+                for producto in productos.mirarLosProductos(nom_categoria):
+                    print(f'{producto.getNom()},{producto.getQuantitat()}')
+            print()
+        else:
+            print('Categoria no existe')
      
     
     def eliminar_categoria(self, nom_categoria: str) -> bool:
@@ -165,7 +167,8 @@ else:
 #El usuario puede filtrar por categoria
 
 
-miApp.filtrar_por_categoria(categoria_lactis)
+
+miApp.filtrar_por_categoria('Lactis')
 
 
 

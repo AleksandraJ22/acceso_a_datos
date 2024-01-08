@@ -16,14 +16,7 @@ class ListaItem:
         
         
  #usuario quiere añadir categoria 
-        
-    def afegir_Producte_a_categoria(self, c: Categoria, p:List[Producte])->bool:
-        if c in self.categorias:
-            self.categorias[c].append(p)
-            return True
-        else:
-            return False
-       
+   
         
     def afegir_categoria(self, c: Categoria)->bool:
         if c in self.categorias:
@@ -66,13 +59,17 @@ class ListaItem:
                 print(f'  Producto: {producto.getNom()}, Cantidad: {producto.getQuantitat()}')
         print()
             
-    def agregarProducto(self, nom_categoria: str, p: Producte)->bool:
-        if nom_categoria not in self.productos:
-           
-            return False
-        else: 
-            self.productos[nom_categoria].append(p)
-            return True
+    def agregarProducto(self, c: Categoria, p: Producte)->bool:
+        
+        
+        
+       return  c.setProducte(c.getNom(),p)
+       
+        
+        
+                
+                
+            
         
     def verTodaLaLista(self)->None:
         print(f'----------------------LISTA DE LA COMPRA: ------------------')
@@ -82,7 +79,8 @@ class ListaItem:
                 print(f'{producto.getNom()}, {producto.getQuantitat()}')
   
         
-   # def updateCategoria(self, nom_categoria: str, p:Producte, novaQuantitat: int)->bool:
+   # def updateCategoria(self, nom_categoria: str, novaQuantitat: int)->bool:
+        
         
     #    if nom_categoria in self.categorias:#compruebo que la categoria existe
             

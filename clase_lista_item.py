@@ -16,16 +16,24 @@ class ListaItem:
         
         
  #usuario quiere añadir categoria 
- 
-
-  #  def afegir_categoria(self, nombre: str, productos: Dict[str, List[str]] = None):
-   #     nueva_categoria = Categoria(nombre, productos)
-    #    self.categorias[nombre] = nueva_categoria
         
+    def afegir_Producte_a_categoria(self, c: Categoria, p:List[Producte])->bool:
+        if c in self.categorias:
+            self.categorias[c].append(p)
+            return True
+        else:
+            return False
+       
         
-        
-    def afegir_categoria(self, c: Categoria)->None:
-        self.categorias[c.nombre] = c
+    def afegir_categoria(self, c: Categoria)->bool:
+        if c in self.categorias:
+            
+            
+            return False
+        else:
+            
+            self.categorias[c.nombre] = c
+            return True
         
 
 #si usuario quiere filtrar por categoria
@@ -72,21 +80,7 @@ class ListaItem:
            
             for producto in productos.mirarLosProductos(productos.getNom()):
                 print(f'{producto.getNom()}, {producto.getQuantitat()}')
-       
-            
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        
-        
-        
-    
+  
         
    # def updateCategoria(self, nom_categoria: str, p:Producte, novaQuantitat: int)->bool:
         
@@ -99,65 +93,17 @@ class ListaItem:
       #          p.setQuantitat(novaQuantitat+p.getQuantitat())
        #         return True
         
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            
-            
-            
-        
-  
-
     
-miApp=ListaItem()
 
 
+#print(f'Ahora borramos la categoria animal')
 
- 
-            
-
-categoria_frescos=Categoria('Frescos', {'Frescos':[Producte('Carne', 2), Producte('Pescado', 3)]})
-categoria_begudes=Categoria('Begudes',{'Begudes':[Producte('Coca-Cola', 5), Producte('Agua', 10)]})
-categoria_lactis=Categoria('Lactis', {'Lactis':[Producte('Leche', 1), Producte('Iogurts', 4)]})
-categoria_neteja=Categoria('Neteja', {'Neteja': [Producte('Detergent', 3), Producte('Esponjas', 2)]})
-categoria_fiv= Categoria('Fruita i verdures',{'Fruita i verdures': [Producte('Fruita', 6), Producte('Verduras', 8)]})
-categoria_animal = Categoria('Animal', {'Animal': [Producte('Pienso', 3), Producte('Snacks', 5)]})
-
-miApp.afegir_categoria(categoria_frescos)   
-miApp.afegir_categoria(categoria_begudes) 
-miApp.afegir_categoria(categoria_lactis) 
-miApp.afegir_categoria(categoria_neteja) 
-miApp.afegir_categoria(categoria_fiv) 
-miApp.afegir_categoria(categoria_animal)    
-
-
-
-miApp.imprimirCategorias()
-atun_gatos=Producte('atun_gatos',3)
-
-
-
-
-print(f'Ahora se ha añadido la categoria comida para animales (Animal)')
- 
-
-miApp.imprimirCategorias()
-
-
-print(f'Ahora borramos la categoria animal')
-
-if miApp.eliminar_categoria('Animal'):
-    print('Se ha borrado correctamente')
+#if miApp.eliminar_categoria('Animal'):
+ #   print('Se ha borrado correctamente')
    
-    miApp.imprimirCategorias()
-else:
-    print('Esa categoria no existe')
+  #  miApp.imprimirCategorias()
+#else:
+#    print('Esa categoria no existe')
     
     
 #El usuario  puede ver todo la lista 
@@ -168,12 +114,4 @@ else:
 
 
 
-miApp.filtrar_por_categoria('Lactis')
-
-
-
-
-
-         
-
-     
+#miApp.filtrar_por_categoria('Lactis')

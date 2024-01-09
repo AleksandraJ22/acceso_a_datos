@@ -6,11 +6,11 @@ class ListaItem:
 
     def __init__(self):
         self.categorias = {
-            #'Frescos': Categoria('Frescos', [Producte('Carne', 2), Producte('Pescado', 3)]),
-            #'Begudes': Categoria('Begudes', [Producte('Coca-Cola', 5), Producte('Agua', 10)]),
-           # 'Làctis': Categoria('Lactis', [Producte('Leche', 1), Producte('Iogurts', 4)]),
-            #'Neteja': Categoria('Neteja', [Producte('Detergent', 3), Producte('Esponjas', 2)]),
-            #'Fruita i verdures': Categoria('Fruita i verdures', [Producte('Fruita', 6), Producte('Verduras', 8)]),
+            'Frescos': Categoria('Frescos', [Producte('Carne', 2), Producte('Pescado', 3)]),
+            'Begudes': Categoria('Begudes', [Producte('Coca-Cola', 5), Producte('Agua', 10)]),
+            'Làctis': Categoria('Lactis', [Producte('Leche', 1), Producte('Iogurts', 4)]),
+            'Neteja': Categoria('Neteja', [Producte('Detergent', 3), Producte('Esponjas', 2)]),
+            'Fruita i verdures': Categoria('Fruita i verdures', [Producte('Fruita', 6), Producte('Verduras', 8)]),
         }
         #self.categorias: List[Categoria] = []
         
@@ -55,8 +55,9 @@ class ListaItem:
         print("---------------------- Estas son las categorias existentes: ------------------")
         for categoria, productos in self.categorias.items():
             print(f'{categoria}:')
-            for producto in productos.mirarLosProductos(productos.getNom()):
-                print(f'  Producto: {producto.getNom()}, Cantidad: {producto.getQuantitat()}')
+            for producto in productos.mirarLosProductos(categoria):  
+                print(f'{producto.getNom()}, {producto.getQuantitat()}')
+                
         print()
             
     def agregarProducto(self, c: Categoria, p: Producte)->bool:
@@ -64,12 +65,8 @@ class ListaItem:
         
         
        return  c.setProducte(c.getNom(),p)
-       
-        
-        
-                
-                
-            
+   
+          
         
     def verTodaLaLista(self)->None:
         print(f'----------------------LISTA DE LA COMPRA: ------------------')

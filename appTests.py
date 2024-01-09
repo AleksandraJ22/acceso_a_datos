@@ -1,62 +1,62 @@
+import unittest
 from clase_lista_item import ListaItem
 from clase_categoria import Categoria
 from clase_producto import Producte
 
 
-
-
-miApp=ListaItem()
+class Tests(unittest.TestCase):
     
-
-categoria_frescos=Categoria('Frescos', {'Frescos':[Producte('Carne', 2), Producte('Pescado', 3)]})
-categoria_begudes=Categoria('Begudes',{'Begudes':[Producte('Coca-Cola', 5), Producte('Agua', 10)]})
-categoria_lactis=Categoria('Lactis', {'Lactis':[Producte('Leche', 1), Producte('Iogurts', 4)]})
-categoria_neteja=Categoria('Neteja', {'Neteja': [Producte('Detergent', 3), Producte('Esponjas', 2)]})
-categoria_fiv= Categoria('Fruita i verdures',{'Fruita i verdures': [Producte('Fruita', 6), Producte('Verduras', 8)]})
-categoria_animal = Categoria('Animal', {'Animal': []})
-miApp.afegir_categoria(categoria_frescos)   
-miApp.afegir_categoria(categoria_begudes) 
-miApp.afegir_categoria(categoria_lactis) 
-miApp.afegir_categoria(categoria_neteja) 
-miApp.afegir_categoria(categoria_fiv) 
-
-miApp.imprimirCategorias()
-#atun_gatos=Producte('atun_gatos',3)
-
-
-def testAñadirCategoria():
-    miApp.afegir_categoria(categoria_animal)
+   
+     
+     
+     def testAñadirCategoria(self):
+         miApp=ListaItem()
+         categoria_animal = Categoria('Animal', {'Animal': []})
+         miApp.afegir_categoria(categoria_animal)
+         
+         self.assertEqual(True, miApp.afegir_categoria(categoria_animal))
+         
+     
+       
+        
+     def testBorrarCategoria(self):
+          miApp=ListaItem()
+          categoria_animal = Categoria('Animal', {'Animal': []})
+          miApp.afegir_categoria(categoria_animal)         
+        
+          self.assertNotEqual(False,miApp.eliminar_categoria('Animal'))
+        
+          
+     def testAñadirProducteACategoria(self):
+         miApp=ListaItem()
+         categoria_animal = Categoria('Animal', {'Animal': []})
+         miApp.afegir_categoria(categoria_animal)        
+         atun_gato=Producte('atun_gatos',3)
+         self.assertEqual(True, miApp.agregarProducto(categoria_animal,atun_gato))
+         
+     
+       
+     def testFiltrarPorCategoria(self):
+         miApp=ListaItem()
+        # categoria_frescos=Categoria('Frescos', {'Frescos':[Producte('Carne', 2), Producte('Pescado', 3)]})
+         categoria_animal = Categoria('Animal', {'Animal': [Producte('atun_gatos',3)]})
+         miApp.afegir_categoria(categoria_animal)
+         #miApp.afegir_categoria(categoria_frescos)        
+         self.assertNotEqual('Categoria no existe',miApp.filtrar_por_categoria(categoria_animal.getNom()))
+         
+         
+     def testImprimirTodasLasCategorias(self):
+         miApp=ListaItem()
+         
+         self.assertEqual(miApp.imprimirCategorias(),miApp.imprimirCategorias())
+         
+         
+         
+         
+         
+        
     
-    assert( miApp.afegir_categoria(categoria_animal) == True)
-    print(f'Ahora se ha añadido la categoria comida para animales (Animal)')
-    miApp.imprimirCategorias()
+        
     
-    
-def testBorrarCategoria():
-    print(f'Ahora borramos la categoria animal')
-    assert( miApp.eliminar_categoria('Animal') == False)
-    miApp.imprimirCategorias()
-    
-def testAñadirProducteACategoria():
-    print('Añadimos un producto a la categoria Animal')
-    atun_gato=Producte('atun_gatos',3)
-    assert(miApp.agregarProducto(categoria_animal,atun_gato) == True)
-    miApp.imprimirCategorias()
-    
-def testFiltrarPorCategoria():
-    pass
-    
-    
-    
-    
-    
-    
-testAñadirCategoria()
-#testBorrarCategoria()
-testAñadirProducteACategoria()
-
-
- 
-
-
-
+if __name__ == '__main__':
+    unittest.main()

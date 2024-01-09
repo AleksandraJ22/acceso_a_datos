@@ -2,6 +2,8 @@ import unittest
 from clase_lista_item import ListaItem
 from clase_categoria import Categoria
 from clase_producto import Producte
+from unittest.mock import patch
+from io import StringIO
 
 
 class Tests(unittest.TestCase):
@@ -45,13 +47,28 @@ class Tests(unittest.TestCase):
          self.assertNotEqual('Categoria no existe',miApp.filtrar_por_categoria(categoria_animal.getNom()))
          
          
-     def testImprimirTodasLasCategorias(self):
-         miApp=ListaItem()
-         
-         self.assertEqual(miApp.imprimirCategorias(),miApp.imprimirCategorias())
-         
-         
-         
+     def setUp(self):
+        self.miApp = ListaItem()
+        self.expected_output = ""
+        for categoria, productos in self.miApp.categorias.items():
+            self.expected_output += f'{categoria}:\n'
+            for producto in productos.mirarLosProductos(categoria):
+                self.expected_output += f'{producto.getNom()}, {producto.getQuantitat()}\n'
+            self.expected_output += '\n'
+            
+            
+    
+     @patch('sys.stdout', new_callable=StringIO) 
+     def testImprimirTodasLasCategorias(self,mock_stdout):
+        self.miApp.imprimirCategorias()
+      
+        actual_output = mock_stdout.getvalue()
+        
+      
+        self.assertEqual(actual_output, self.expected_output)
+        
+        
+
          
          
         
